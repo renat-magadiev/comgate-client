@@ -1,0 +1,35 @@
+{
+  "name": "renat-magadiev/comgate-client",
+  "description": "Comgate client wrapper",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Renat Magadiev",
+      "email": "renatmagadiev@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "php":"^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.5.*"
+  },
+  "autoload": {
+    "psr-4": {"Comgate\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ComgateTest\\": "test/"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@test"
+    ],
+    "upload-coverage": "coveralls -v",
+    "test": "phpunit --colors=always",
+    "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+  }
+}
