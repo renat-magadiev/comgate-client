@@ -2,3 +2,6 @@
 
 # comgate-client
 Comgate client wrapper
+
+
+## Work in progress - not fully implemented 
