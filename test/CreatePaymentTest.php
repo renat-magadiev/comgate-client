@@ -2,6 +2,7 @@
 
 namespace ComgateTest;
 
+use Comgate\Exception\LabelTooLongException;
 use Comgate\Request\CreatePayment;
 use PHPUnit\Framework\TestCase;
 
@@ -41,6 +42,21 @@ class CreatePaymentTest extends TestCase
         $this->assertSame(self::TEST_LABEL, $createPayment->getLabel());
         $this->assertSame(self::TEST_METHOD, $createPayment->getMethod());
         $this->assertSame(self::TEST_CURRENCY, $createPayment->getCurr());
+    }
+
+
+    public function test__constructLabelError()
+    {
+        $this->expectException(LabelTooLongException::class);
+
+        new CreatePayment(
+            self::TEST_PRICE,
+            self::TEST_REF_ID,
+            self::TEST_EMAIL,
+            'soooooooooo-long-text-really-looooooong',
+            self::TEST_METHOD,
+            self::TEST_CURRENCY
+        );
     }
 
 
