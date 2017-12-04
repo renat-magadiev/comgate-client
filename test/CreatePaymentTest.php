@@ -4,6 +4,7 @@ namespace ComgateTest;
 
 use Comgate\Exception\LabelTooLongException;
 use Comgate\Request\CreatePayment;
+use Comgate\Response\CreatePaymentResponse;
 use PHPUnit\Framework\TestCase;
 
 class CreatePaymentTest extends TestCase
@@ -433,5 +434,13 @@ class CreatePaymentTest extends TestCase
         $createPayment = $this->create();
 
         $this->assertSame('/create', $createPayment->getEndPoint());
+    }
+
+
+    public function testGetResponseClass()
+    {
+        $createPayment = $this->create();
+
+        $this->assertSame(CreatePaymentResponse::class, $createPayment->getResponseClass());
     }
 }

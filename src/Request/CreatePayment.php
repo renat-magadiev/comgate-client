@@ -4,6 +4,7 @@ namespace Comgate\Request;
 
 use Comgate\Enum\Method;
 use Comgate\Exception\LabelTooLongException;
+use Comgate\Response\CreatePaymentResponse;
 
 class CreatePayment implements RequestInterface
 {
@@ -589,7 +590,7 @@ class CreatePayment implements RequestInterface
      */
     public function getResponseClass()
     {
-        return '/create';
+        return CreatePaymentResponse::class;
     }
 
 }
