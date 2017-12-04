@@ -21,4 +21,10 @@ interface RequestInterface
      * @return string
      */
     public function getEndPoint();
+
+
+    /**
+     * @return string
+     */
+    public function getResponseClass();
 }

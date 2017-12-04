@@ -575,7 +575,19 @@ class CreatePayment implements RequestInterface
     }
 
 
+    /**
+     * @return string
+     */
     public function getEndPoint()
+    {
+        return '/create';
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getResponseClass()
     {
         return '/create';
     }
