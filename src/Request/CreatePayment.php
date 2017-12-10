@@ -559,7 +559,11 @@ class CreatePayment implements RequestInterface
 
         foreach ($fields as $field) {
             if ($this->$field !== NULL) {
-                $fields[$field] = $this->$field;
+                if (is_bool($this->$field)) {
+                    $data[$field] = $this->$field ? 'true' : 'false';
+                } else {
+                    $data[$field] = $this->$field;
+                }
             }
         }
 
@@ -581,7 +585,7 @@ class CreatePayment implements RequestInterface
      */
     public function getEndPoint()
     {
-        return '/create';
+        return 'create';
     }
 
 

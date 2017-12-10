@@ -3,6 +3,7 @@
 namespace Comgate;
 
 use Comgate\Request\RequestInterface;
+use Comgate\Response\CreatePaymentResponse;
 
 class Client
 {
@@ -39,28 +40,50 @@ class Client
         $this->secret     = $secret;
 
         $this->client = new \GuzzleHttp\Client([
-            'base_url' => [
-                'https://payments.comgate.cz/{version}',
-                [
-                    'version' => 'v1.0'
-                ]
-            ]
+            'base_uri' => 'https://payments.comgate.cz/v1.0/'
         ]);
     }
 
 
+    /**
+     * @param \GuzzleHttp\Client $client
+     * @return $this
+     */
+    public function setClient(\GuzzleHttp\Client $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+
+    /**
+     * @param RequestInterface $request
+     * @return CreatePaymentResponse
+     */
     public function send(RequestInterface $request)
     {
+        $baseParams = [
+            'merchant' => $this->merchantId,
+            'test' => $this->test ? 'true' : 'false',
+            'secret' => $this->secret
+        ];
+
         if ($request->isPost()) {
             $response = $this->client->request('POST', $request->getEndPoint(), [
-                'form_params' => $request->getData()
+                'form_params' => $baseParams + $request->getData()
             ]);
         } else {
             $response = $this->client->request('GET', $request->getEndPoint(), [
-                'query' => $request->getData()
+                'query' => $baseParams + $request->getData()
             ]);
         }
 
-        return $response;
+        $body = (string)$response->getBody();
+        parse_str($body, $data);
+
+        $responseClass = $request->getResponseClass();
+
+        return new $responseClass($data);
     }
 }

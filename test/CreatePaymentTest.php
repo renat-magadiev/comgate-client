@@ -433,7 +433,7 @@ class CreatePaymentTest extends TestCase
     {
         $createPayment = $this->create();
 
-        $this->assertSame('/create', $createPayment->getEndPoint());
+        $this->assertSame('create', $createPayment->getEndPoint());
     }
 
 
