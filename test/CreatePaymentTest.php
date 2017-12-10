@@ -406,15 +406,17 @@ class CreatePaymentTest extends TestCase
     public function testGetData()
     {
         $createPayment = $this->create();
+        $createPayment->setPrepareOnly(true);
 
         $this->assertArraySubset(
             [
-                'price'  => self::TEST_PRICE,
-                'refId'  => self::TEST_REF_ID,
-                'email'  => self::TEST_EMAIL,
-                'label'  => self::TEST_LABEL,
-                'method' => self::TEST_METHOD,
-                'curr'   => self::TEST_CURRENCY,
+                'price'       => self::TEST_PRICE,
+                'refId'       => self::TEST_REF_ID,
+                'email'       => self::TEST_EMAIL,
+                'label'       => self::TEST_LABEL,
+                'method'      => self::TEST_METHOD,
+                'curr'        => self::TEST_CURRENCY,
+                'prepareOnly' => 'true',
             ],
             $createPayment->getData()
         );
