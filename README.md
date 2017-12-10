@@ -5,7 +5,20 @@ Comgate API client wrapper
 
 This package allow you to create payment using Comgate API and get redirect URL to your customers
 
-Basic usage:
+Requirements
+-------------
+- PHP 7.0 or higher
+- [guzzlehttp/guzzle](https://packagist.org/packages/guzzlehttp/guzzle)
+
+Installation
+------------
+```sh
+$ composer require renat-magadiev/comgate-client
+```
+
+
+Basic usage
+------------
 
 ```php
 use Comgate\Client;
