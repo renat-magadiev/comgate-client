@@ -3,6 +3,7 @@
 namespace ComgateTest;
 
 use Comgate\Enum\ResponseCode;
+use Comgate\Exception\ErrorCodeException;
 use Comgate\Exception\InvalidArgumentException;
 use Comgate\Response\CreatePaymentResponse;
 use PHPUnit\Framework\TestCase;
@@ -98,6 +99,9 @@ class CreatePaymentResponseTest extends TestCase
 
     public function testIsNotOk()
     {
+        $this->expectException(ErrorCodeException::class);
+        $this->expectExceptionCode(ResponseCode::CODE_CHOOSE_CORRECT_METHOD);
+
         $response = new CreatePaymentResponse(
             [
                 'code'     => ResponseCode::CODE_CHOOSE_CORRECT_METHOD,
@@ -106,15 +110,13 @@ class CreatePaymentResponseTest extends TestCase
                 'redirect' => 'http://test.cz',
             ]
         );
-
-        $this->assertSame(false, $response->isOk());
     }
 
     public function testGetMessage()
     {
         $response = new CreatePaymentResponse(
             [
-                'code'     => ResponseCode::CODE_CHOOSE_CORRECT_METHOD,
+                'code'     => ResponseCode::CODE_OK,
                 'message'  => 'OK',
                 'transId'  => 'asd-asd-asd-asd',
                 'redirect' => 'http://test.cz',
@@ -128,7 +130,7 @@ class CreatePaymentResponseTest extends TestCase
     {
         $response = new CreatePaymentResponse(
             [
-                'code'     => ResponseCode::CODE_CHOOSE_CORRECT_METHOD,
+                'code'     => ResponseCode::CODE_OK,
                 'message'  => 'OK',
                 'transId'  => 'asd-asd-asd-asd',
                 'redirect' => 'http://test.cz',
@@ -142,7 +144,7 @@ class CreatePaymentResponseTest extends TestCase
     {
         $response = new CreatePaymentResponse(
             [
-                'code'     => ResponseCode::CODE_CHOOSE_CORRECT_METHOD,
+                'code'     => ResponseCode::CODE_OK,
                 'message'  => 'OK',
                 'transId'  => 'asd-asd-asd-asd',
                 'redirect' => 'http://test.cz',
