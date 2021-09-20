@@ -13,7 +13,7 @@ Requirements
 Installation
 ------------
 ```sh
-$ composer require renat-magadiev/comgate-client
+$ composer require andrejro2/comgate-client
 ```
 
 
