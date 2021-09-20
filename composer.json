@@ -1,5 +1,5 @@
 {
-  "name": "renat-magadiev/comgate-client",
+  "name": "andrejro2/comgate-client",
   "description": "Comgate client wrapper",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -7,6 +7,10 @@
     {
       "name": "Renat Magadiev",
       "email": "renatmagadiev@gmail.com"
+    },
+    {
+      "name": "Andrew Kozoriz",
+      "email": "elgustos@gmail.com"
     }
   ],
   "require": {
