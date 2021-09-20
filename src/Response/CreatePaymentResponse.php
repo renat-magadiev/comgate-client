@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Comgate\Response;
 
 use Comgate\Enum\ResponseCode;
-use Comgate\Exception\ErrorCodeException;
 use Comgate\Exception\InvalidArgumentException;
 
 class CreatePaymentResponse
@@ -33,7 +32,6 @@ class CreatePaymentResponse
     /**
      * @param array $rawData
      * @throws InvalidArgumentException
-     * @throws ErrorCodeException
      */
     public function __construct(array $rawData)
     {
@@ -47,10 +45,6 @@ class CreatePaymentResponse
             $this->message = $rawData['message'];
         } else {
             throw new InvalidArgumentException('Missing "message" in response');
-        }
-
-        if (!$this->isOk()) {
-            throw new ErrorCodeException($this->message, $this->code);
         }
 
         if (isset($rawData['transId'])) {
