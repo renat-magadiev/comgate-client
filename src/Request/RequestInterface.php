@@ -17,7 +17,11 @@ interface RequestInterface
      */
     public function isPost();
 
-
+    /**
+     * @return bool
+     */
+    public function needParse();
+  
     /**
      * @return string
      */

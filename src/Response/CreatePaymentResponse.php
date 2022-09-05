@@ -30,11 +30,11 @@ class CreatePaymentResponse
     private $redirect;
 
 
-    /**
-     * @param array $rawData
-     * @throws InvalidArgumentException
-     * @throws ErrorCodeException
-     */
+	/**
+	 * @param array $rawData
+	 * @throws InvalidArgumentException
+	 * @throws ErrorCodeException
+	 */
     public function __construct(array $rawData)
     {
         if (isset($rawData['code'])) {
@@ -49,11 +49,12 @@ class CreatePaymentResponse
             throw new InvalidArgumentException('Missing "message" in response');
         }
 
-        if (!$this->isOk()) {
-            throw new ErrorCodeException($this->message, $this->code);
-        }
+		if (!$this->isOk()) {
+			throw new ErrorCodeException($this->message, $this->code);
+		}
 
-        if (isset($rawData['transId'])) {
+
+		if (isset($rawData['transId'])) {
             $this->transId = $rawData['transId'];
         } else {
             throw new InvalidArgumentException('Missing "transId" in response');
