@@ -37,7 +37,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client(['handler' => $handler]);
         $client->setClient($guzzleClient);
 
-        $createPayment = new CreatePayment(1000, '10001', 'test@test.cz', 'Product');
+        $createPayment = new CreatePayment(1000, '10001', 'test@test.cz', 'Janko Hrasko', 'Product');
 
         $response = $client->send($createPayment);
 
@@ -62,7 +62,7 @@ class ClientTest extends TestCase
         $guzzleClient = new \GuzzleHttp\Client(['handler' => $handler]);
         $client->setClient($guzzleClient);
 
-        $createPayment = new CreatePayment(1, '10001', 'test@test.cz', 'Product');
+        $createPayment = new CreatePayment(1, '10001', 'test@test.cz', 'Janko Hrasko', 'Product');
 
         $this->expectException(ErrorCodeException::class);
         $this->expectExceptionCode(1107);

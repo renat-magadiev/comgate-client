@@ -27,6 +27,11 @@ class CreatePayment implements RequestInterface {
   /**
    * @var string
    */
+  private $fullName;
+
+  /**
+   * @var string
+   */
   private $label;
 
   /**
@@ -108,16 +113,18 @@ class CreatePayment implements RequestInterface {
    * @param int $price (price in heller so for 10 CZK you must set 1000)
    * @param string $refId (for example orderId)
    * @param string $email (email of client to send confirmation)
+   * @param string $fullName (full name of client to send confirmation)
    * @param string $label (label of product 1-16 chars)
    * @param string $method (method of payment to show to customer)
    * @param string $curr
    *
    * @throws LabelTooLongException
    */
-  public function __construct(int $price, string $refId, string $email, string $label, string $method = Method::ALL, string $curr = 'CZK') {
+	public function __construct(int $price, string $refId, string $email, string $fullName, string $label, string $method = Method::ALL, string $curr = 'CZK') {
     $this->price = $price;
     $this->refId = $refId;
     $this->email = $email;
+    $this->fullName  = $fullName;
     $this->method = $method;
     $this->curr = $curr;
 
@@ -187,6 +194,23 @@ class CreatePayment implements RequestInterface {
     return $this;
   }
 
+
+  public function getFullName(): string
+  {
+    return $this->fullName;
+  }
+
+
+  /**
+   * @param string $fullName
+   * @return CreatePayment
+   */
+  public function setFullName(string $fullName): CreatePayment
+  {
+    $this->fullName = $fullName;
+
+    return $this;
+  }
 
   /**
    * @return string
@@ -516,6 +540,7 @@ class CreatePayment implements RequestInterface {
       'price' => $this->getPrice(),
       'refId' => $this->getRefId(),
       'email' => $this->getEmail(),
+      'fullName' => $this->getFullName(),
       'label' => $this->getLabel(),
       'method' => $this->getMethod(),
       'curr' => $this->getCurr(),

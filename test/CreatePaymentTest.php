@@ -12,6 +12,7 @@ class CreatePaymentTest extends TestCase
     const TEST_PRICE = 100;
     const TEST_REF_ID = '1';
     const TEST_EMAIL = 'test@test.cz';
+    const FULL_NAME = 'Janko Hrasko';
     const TEST_LABEL = 'test';
     const TEST_METHOD = 'ALL';
     const TEST_CURRENCY = 'CZK';
@@ -26,6 +27,7 @@ class CreatePaymentTest extends TestCase
             self::TEST_PRICE,
             self::TEST_REF_ID,
             self::TEST_EMAIL,
+            self::FULL_NAME,
             self::TEST_LABEL,
             self::TEST_METHOD,
             self::TEST_CURRENCY
@@ -54,6 +56,7 @@ class CreatePaymentTest extends TestCase
             self::TEST_PRICE,
             self::TEST_REF_ID,
             self::TEST_EMAIL,
+            self::FULL_NAME,
             'soooooooooo-long-text-really-looooooong',
             self::TEST_METHOD,
             self::TEST_CURRENCY
