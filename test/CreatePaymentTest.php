@@ -411,18 +411,15 @@ class CreatePaymentTest extends TestCase
         $createPayment = $this->create();
         $createPayment->setPrepareOnly(true);
 
-        $this->assertArraySubset(
-            [
-                'price'       => self::TEST_PRICE,
-                'refId'       => self::TEST_REF_ID,
-                'email'       => self::TEST_EMAIL,
-                'label'       => self::TEST_LABEL,
-                'method'      => self::TEST_METHOD,
-                'curr'        => self::TEST_CURRENCY,
-                'prepareOnly' => 'true',
-            ],
-            $createPayment->getData()
-        );
+        $data = $createPayment->getData();
+
+        $this->assertSame(self::TEST_PRICE, $data['price']);
+        $this->assertSame(self::TEST_REF_ID, $data['refId']);
+        $this->assertSame(self::TEST_EMAIL, $data['email']);
+        $this->assertSame(self::TEST_LABEL, $data['label']);
+        $this->assertSame(self::TEST_METHOD, $data['method']);
+        $this->assertSame(self::TEST_CURRENCY, $data['curr']);
+        $this->assertSame('true', $data['prepareOnly']);
     }
 
 
