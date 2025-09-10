@@ -28,7 +28,7 @@ class ResponseCode
     const CODE_FATAL = 1500;
 
 
-    static $codes = [
+    public static $codes = [
         0    => 'OK',
         1100 => 'neznámá chyba',
         1102 => 'zadaný jazyk není podporován',
